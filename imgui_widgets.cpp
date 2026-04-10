@@ -10722,11 +10722,30 @@ void ImGui::TabItemBackground(ImDrawList* draw_list, const ImRect& bb, ImGuiTabI
     const float rounding = ImMax(0.0f, ImMin((flags & ImGuiTabItemFlags_Button) ? g.Style.FrameRounding : g.Style.TabRounding, width * 0.5f - 1.0f));
     const float y1 = bb.Min.y + 1.0f;
     const float y2 = bb.Max.y - g.Style.TabBarBorderSize;
+
     draw_list->PathLineTo(ImVec2(bb.Min.x, y2));
     draw_list->PathArcToFast(ImVec2(bb.Min.x + rounding, y1 + rounding), rounding, 6, 9);
     draw_list->PathArcToFast(ImVec2(bb.Max.x - rounding, y1 + rounding), rounding, 9, 12);
     draw_list->PathLineTo(ImVec2(bb.Max.x, y2));
     draw_list->PathFillConvex(col);
+
+    draw_list->PathLineTo(ImVec2(bb.Min.x, y2));
+    draw_list->PathArcToFast(ImVec2(bb.Min.x + rounding, y1 + rounding), rounding, 6, 9);
+    draw_list->PathArcToFast(ImVec2(bb.Max.x - rounding, y1 + rounding), rounding, 9, 12);
+    draw_list->PathLineTo(ImVec2(bb.Max.x, y2));
+    const ImVec4 shadow_bottom_value = g.Style.Colors[ImGuiColCUSTOM_ShadowColorBottom];
+    const ImVec4 shadow_top_value = g.Style.Colors[ImGuiColCUSTOM_ShadowColorTop];
+
+    draw_list->AddRectFilledMultiColor(
+        ImVec2(bb.Min.x, y1),
+        ImVec2(bb.Max.x, y2),
+        GetColorU32(shadow_top_value),
+        GetColorU32(shadow_top_value),
+        GetColorU32(shadow_bottom_value),
+        GetColorU32(shadow_bottom_value)
+    );
+    draw_list->PathClear();
+
     if (g.Style.TabBorderSize > 0.0f)
     {
         draw_list->PathLineTo(ImVec2(bb.Min.x + 0.5f, y2));

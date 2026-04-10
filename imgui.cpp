@@ -3958,7 +3958,11 @@ void ImGui::RenderFrame(ImVec2 p_min, ImVec2 p_max, ImU32 fill_col, bool borders
     ImGuiContext& g = *GImGui;
     ImGuiWindow* window = g.CurrentWindow;
     window->DrawList->AddRectFilled(p_min, p_max, fill_col, rounding);
-    window->DrawList->AddRectFilledMultiColor(p_min, p_max, GetColorU32(ImVec4(0.0f, 0.0f, 0.0f, 0.05f)), GetColorU32(ImVec4(0.0f, 0.0f, 0.0f, 0.05f)), GetColorU32(ImVec4(0.0f, 0.0f, 0.0f, 0.30f)), GetColorU32(ImVec4(0.0f, 0.0f, 0.0f, 0.30f)));
+    window->DrawList->AddRectFilledMultiColor(p_min, p_max,
+        GetColorU32(g.Style.Colors[ImGuiColCUSTOM_ShadowColorTop]),
+        GetColorU32(g.Style.Colors[ImGuiColCUSTOM_ShadowColorTop]),
+        GetColorU32(g.Style.Colors[ImGuiColCUSTOM_ShadowColorBottom]),
+        GetColorU32(g.Style.Colors[ImGuiColCUSTOM_ShadowColorBottom]));
     const float border_size = g.Style.FrameBorderSize;
     if (borders && border_size > 0.0f)
     {

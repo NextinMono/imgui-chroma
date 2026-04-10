@@ -1796,6 +1796,8 @@ enum ImGuiCol_
     ImGuiCol_NavWindowingHighlight, // Highlight window when using Ctrl+Tab
     ImGuiCol_NavWindowingDimBg,     // Darken/colorize entire screen behind the Ctrl+Tab window list, when active
     ImGuiCol_ModalWindowDimBg,      // Darken/colorize entire screen behind a modal window, when one is active
+    ImGuiColCUSTOM_ShadowColorTop, //CUSTOM, for top color shadow
+    ImGuiColCUSTOM_ShadowColorBottom, //CUSTOM for bottom color shadow
     ImGuiCol_COUNT,
 
 #ifndef IMGUI_DISABLE_OBSOLETE_FUNCTIONS
